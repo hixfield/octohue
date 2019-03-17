@@ -3,6 +3,7 @@ from __future__ import absolute_import
 from os import path
 from qhue import Bridge, QhueException, create_new_username
 import yaml
+from time import sleep
 
 import octoprint.plugin
 
@@ -23,7 +24,7 @@ class OctoHuePlugin(octoprint.plugin.StartupPlugin,
 		self.checkHueUserName()
 
 	def get_settings_defaults(self):
-		return dict(hueBridge="192.168.99.200", hueLampId="13")
+		return dict(hueBridge="", hueLampId="")
 
 	def get_template_configs(self):
 		return [
@@ -40,14 +41,20 @@ class OctoHuePlugin(octoprint.plugin.StartupPlugin,
 		if event == "PrintFailed":
 		    self.lampOn(False)
 		if event == "PrintCancelled":
-		    self.lampOn(False)			
+		    self.lampOn(False)
+		if event == "SettingsUpdated":
+			self.checkHueUserName()
 
 	def checkHueUserName(self):
+		ip = self._settings.get(["hueBridge"])
+		if ip == "":
+			self._logger.info("Please configure the Hue's bridge in settings")
+			return
 		self._logger.info("Checking hue username...")
 		if not path.exists(CRED_FILE_PATH):
 			while True:
 				try:
-					self.hueUsername = create_new_username(self._settings.get(["hueBridge"]))
+					self.hueUsername = create_new_username(ip)
 					break
 				except QhueException as err:
 					self._logger.err("Create username failed: {}".format(err))
@@ -57,6 +64,8 @@ class OctoHuePlugin(octoprint.plugin.StartupPlugin,
 			with open(CRED_FILE_PATH, "r") as cred_file:
 				self.hueUsername = cred_file.read()
 		self._logger.info("Hue username : %s" % self.hueUsername)
+		self.lampTest(3)
+
 		
 	def lampOn(self, state):
 		ip = self._settings.get(["hueBridge"])
@@ -64,6 +73,14 @@ class OctoHuePlugin(octoprint.plugin.StartupPlugin,
 		lights = Bridge(ip, self.hueUsername).lights
 		#self._logger.info(yaml.safe_dump(lights()))
  		lights(lampId,'state', on=state)
+
+	def lampTest(self, cycles):
+		for x in range(cycles):
+			self.lampOn(True)
+			sleep(0.5)
+			self.lampOn(False)
+			sleep(0.5)
+
 
 __plugin_name__ = "OctoHue"
 __plugin_implementation__ = OctoHuePlugin()
