@@ -1,6 +1,7 @@
 # OctoPrint-Helloworld
 
-**TODO:** Describe what your plugin does.
+A simple plugin that controls one Philips Hue lamp.
+The lamp is switched on when printing starts and (you guessed it) switched off when printing stops.
 
 ## Setup
 
