@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+setup.py
+octohue/__init__.py
+octohue.egg-info/PKG-INFO
+octohue.egg-info/SOURCES.txt
+octohue.egg-info/dependency_links.txt
+octohue.egg-info/entry_points.txt
+octohue.egg-info/not-zip-safe
+octohue.egg-info/requires.txt
+octohue.egg-info/top_level.txt

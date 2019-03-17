@@ -1,0 +1,4 @@
+include README.md
+recursive-include octohue/templates *
+recursive-include octohue/translations *
+recursive-include octohue/static *
