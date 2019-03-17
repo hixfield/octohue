@@ -81,6 +81,4 @@ class OctoHuePlugin(octoprint.plugin.StartupPlugin,
 			self.lampOn(False)
 			sleep(0.5)
 
-
-__plugin_name__ = "OctoHue"
 __plugin_implementation__ = OctoHuePlugin()
