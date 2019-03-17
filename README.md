@@ -7,11 +7,19 @@
 Install via the bundled [Plugin Manager](https://github.com/foosel/OctoPrint/wiki/Plugin:-Plugin-Manager)
 or manually using this URL:
 
-    https://github.com/yourGithubName/OctoPrint-Helloworld/archive/master.zip
+    https://github.com/hixfield/octohue/archive/master.zip
 
-**TODO:** Describe how to install your plugin, if more needs to be done than just installing it via pip or through
-the plugin manager.
+This plugin requires the following packages to be installed:
+
+* https://github.com/quentinsf/qhue
+
 
 ## Configuration
 
-**TODO:** Describe your plugin's configuration options (if any).
+This plugin creates to configuration settings:
+
+### Bridge
+The IP address of your Hue Bridge.
+
+### Lamp Id
+The ID of the lamp to be controlled. In the current version there is no easy way to determine this so you will have to try and test.
