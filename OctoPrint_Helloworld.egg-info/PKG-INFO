@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: OctoPrint-Helloworld
+Version: 1.0.0
+Summary: A quick "Hello World" example plugin for OctoPrint
+Home-page: https://github.com/yourGithubName/OctoPrint-Helloworld
+Author: Your Name
+Author-email: you@somewhere.net
+License: AGPLv3
+Description: UNKNOWN
+Platform: UNKNOWN
