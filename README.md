@@ -10,10 +10,7 @@ or manually using this URL:
 
     https://github.com/hixfield/octohue/archive/master.zip
 
-This plugin requires the following packages to be installed:
-
-* https://github.com/quentinsf/qhue
-
+This plugin requires and automatically installs the https://github.com/quentinsf/qhue packages.
 
 ## Configuration
 
